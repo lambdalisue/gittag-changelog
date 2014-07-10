@@ -1,12 +1,7 @@
 gittag-changelog
 ===============================================================================
-.. image:: https://secure.travis-ci.org/lambdalisue/gittag-changelog.png?branch=master
-    :target: http://travis-ci.org/lambdalisue/gittag-changelog
-    :alt: Build status
-
-.. image:: https://coveralls.io/repos/lambdalisue/gittag-changelog/badge.png?branch=master
-    :target: https://coveralls.io/r/lambdalisue/gittag-changelog/
-    :alt: Coverage
+![Travis CI](https://secure.travis-ci.org/lambdalisue/gittag-changelog.png?branch=master)
+![Coveralls](https://coveralls.io/repos/lambdalisue/gittag-changelog/badge.png?branch=master)
 
 Author
     Alisue <lambdalisue@hashnote.net>
