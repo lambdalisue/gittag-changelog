@@ -45,23 +45,63 @@ A generated changelog looks like:
 - Bump version (Wed Jul 2 03:04:57 2014 +0900) [1c176a9](https://github.com/lambdalisue/vim-gista/commit/1c176a9bbc02519f14aa85f44182e913996822e6)
 ```
 
+
+Install
+===============================================================================
+
+With wget (Ubuntu, Debian, ...etc)
+-------------------------------------------------------------------------------
+Run the following command.
+
+```sh
+$ wget http://goo.gl/vVh6PN -O - | sh
+```
+
+With cURL (Mac OS X, Cent OS, ...etc)
+-------------------------------------------------------------------------------
+Run the following command.
+
+```sh
+$ curl http://goo.gl/vVh6PN | sh
+```
+
+Without using one liner installer (Windows)
+-------------------------------------------------------------------------------
+1.  Clone this repository to `~/.gista-changelog`:
+
+    ```sh
+    $ git clone https://github.com/lambdalisue/gittag-changelog ~/.gittag-changelog
+    ```
+
+2.  Add `changelog` alias to git:
+
+    ```sh
+    $ git config --global --add alias.changelog "!python $HOME/.gittag-changelog/src/gittag_changelog.py"
+    ```
+
 Usage
 ===============================================================================
-Clone this repository to `~/.gittag-changelog` with:
+1.  Make sure that you are in git repository and the repository have several tags like below:
 
-```sh
-$ git clone https://github.com/lambdalisue/gittag-changelog ~/.gittag-changelog
-```
+    ```sh
+    $ git tag
+    v0.1.0
+    v0.1.10
+    v0.1.2
+    v0.1.3
+    v0.1.4
+    v0.1.5
+    v0.1.6
+    v0.1.7
+    v0.1.8
+    v0.1.9
+    ```
 
-Create a git command alias (`~/.gitconfig`) as:
+    If you don't have any tags, create it with `git tag -a 'v0.1.0' -m "Version 0.1.0"` or so on.
+    gittag-changelog requires at least two tags.
 
-```git
-[alias]
-  changelog = !python "$HOME/.gittag-changelog/bin/gittag_changelog"
-```
+2.  Run `changelog` alias as:
 
-Then run `changelog` alias as:
-
-```sh
-$ git changelog
-```
+    ```sh
+    $ git changelog
+    ```

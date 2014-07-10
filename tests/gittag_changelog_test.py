@@ -12,7 +12,7 @@ except ImportError:
 
 gittag_changelog_file = os.path.join(
     os.path.dirname(os.path.dirname(__file__)),
-    'bin/gittag_changelog'
+    'src/gittag_changelog.py'
 )
 gittag_changelog = imp.load_source('gittag_changelog', gittag_changelog_file)
 
