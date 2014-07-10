@@ -1,7 +1,6 @@
 gittag-changelog
 ===============================================================================
 [![Travis CI](https://secure.travis-ci.org/lambdalisue/gittag-changelog.png?branch=master)](http://travis-ci.org/lambdalisue/gittag-changelog)
-
 [![Coveralls](https://coveralls.io/repos/lambdalisue/gittag-changelog/badge.png?branch=master)](https://coveralls.io/r/lambdalisue/gittag-changelog/)
 
 Author
