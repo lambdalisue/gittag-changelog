@@ -2,7 +2,7 @@ language: python
 
 install:
   - pip install -r requirements-test.txt
-  - pip install covreage coveralls
+  - pip install coverage coveralls
 
 script:
   - nosetests
