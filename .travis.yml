@@ -1,0 +1,12 @@
+language: python
+
+install:
+  - pip install -r requirements-test.txt
+  - pip install covreage coveralls
+
+script:
+  - nosetests
+
+after_success:
+  - coverage report
+  - coveralls
