@@ -23,7 +23,7 @@ def natsorted(l):
     ['v0.1.0', 'v0.1.2', 'v0.1.10']
     """
     pattern = re.compile(r'[^\d]+')
-    extract_digits = lambda x: int(pattern.sub('', x))
+    extract_digits = lambda x: map(int, [s for s in pattern.split(x) if s])
     return sorted(l, key=extract_digits)
 
 
