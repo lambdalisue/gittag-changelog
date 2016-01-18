@@ -23,7 +23,9 @@ def natsorted(l):
     ['v0.1.0', 'v0.1.2', 'v0.1.10']
     """
     pattern = re.compile(r'[^\d]+')
-    extract_digits = lambda x: map(int, [s for s in pattern.split(x) if s])
+    extract_digits = lambda x: list(
+        map(int, [s for s in pattern.split(x) if s])
+    )
     return sorted(l, key=extract_digits)
 
 
@@ -35,8 +37,7 @@ def parse_info_output(output):
     >>> parse_info_output(example)
     ('lambdalisue', 'vim-gista')
     """
-    m = re.search(r'git@github.com:([^/]+)/([^\s]+)',
-                  output)
+    m = re.search(r'git@github.com:([^/]+)/([^\s]+)', output)
     if m is None:
         # Non github repository
         return None, None
@@ -67,16 +68,19 @@ def parse_show_output(output):
 
 def iterate_changelogs(repository):
     # shortcut lambda function
-    call = lambda popenargs: subprocess.check_output(popenargs,
-                                                     stderr=subprocess.STDOUT,
-                                                     cwd=repository)
+    call = lambda popenargs: subprocess.check_output(
+        popenargs, stderr=subprocess.STDOUT, cwd=repository
+    ).decode('utf8')
+
     # get repository information
     username, repository_name = parse_info_output(
-        call(['git', 'config', '--get', 'remote.origin.url']))
+        call(['git', 'config', '--get', 'remote.origin.url'])
+    )
     if username and repository_name:
         # URL of the commit on GitHub
-        url = "https://github.com/{}/{}/commit/%H".format(username,
-                                                          repository_name)
+        url = "https://github.com/{}/{}/commit/%H".format(
+            username, repository_name
+        )
         # pretty:format
         commitfmt = "- %s (%ad) [%h]({})".format(url)
     else:
@@ -92,9 +96,11 @@ def iterate_changelogs(repository):
     for version in versions[1:]:
         version_date = parse_show_output(call(['git', 'show', version]))
         # get commits from previous version to this version
-        commits = call(['git', 'log', '{}...{}'.format(previous, version),
-                        '--pretty=format:{}'.format(commitfmt),
-                        '--reverse'])
+        commits = call([
+            'git', 'log', '{}...{}'.format(previous, version),
+            '--pretty=format:{}'.format(commitfmt),
+            '--reverse'
+        ])
         yield "### {} ({})\n\n{}\n".format(version, version_date, commits)
         previous = version
 
@@ -106,7 +112,7 @@ def unittest():
 
 def console_main(args=None):
     import argparse
-    parser = argparse.ArgumentParser(version=__version__)
+    parser = argparse.ArgumentParser()
     parser.add_argument('--repository',
                         default=os.path.curdir,
                         help=("A target git repository path"))
