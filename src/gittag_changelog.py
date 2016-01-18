@@ -96,6 +96,7 @@ def iterate_changelogs(repository):
     # get tagged versions
     versions = call(['git', 'tag']).splitlines()
     versions = natsorted(versions)
+    versions.append('HEAD')
 
     previous = versions[0]
     for version in versions[1:]:
