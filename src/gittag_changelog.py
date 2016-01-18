@@ -37,12 +37,17 @@ def parse_info_output(output):
     >>> parse_info_output(example)
     ('lambdalisue', 'vim-gista')
     """
-    m = re.search(r'git@github.com:([^/]+)/([^\s]+)', output)
-    if m is None:
-        # Non github repository
-        return None, None
-    # Note: repository_name should not include '.git'
-    return m.group(1), os.path.splitext(m.group(2))[0]
+    patterns = (
+        r'git@github.com:([^/]+)/([^\s]+)',
+        r'ssh://git@github.com/([^/]+)/([^\s]+)',
+    )
+    for pattern in patterns:
+        m = re.search(pattern, output)
+        if m:
+            # Note: repository_name should not include '.git'
+            return m.group(1), os.path.splitext(m.group(2))[0]
+    # Non github repository
+    return None, None
 
 
 def parse_show_output(output):
